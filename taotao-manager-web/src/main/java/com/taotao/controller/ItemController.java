@@ -2,6 +2,8 @@ package com.taotao.controller;
 
 import com.taotao.pojo.TbItem;
 import com.taotao.service.ItemService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ItemController {
 
+    private Logger logger = LoggerFactory.getLogger(ItemController.class);
+
     @Autowired
     public ItemService itemService;
 
@@ -21,6 +25,8 @@ public class ItemController {
     @RequestMapping(value = "item/{itemId}")
     @ResponseBody
     public TbItem getItemById(@PathVariable Long itemId){
-        return this.itemService.getItemById(itemId);
+        TbItem tbItem = this.itemService.getItemById(itemId);
+        logger.info("查询结果为[{}]",tbItem.toString());
+        return tbItem;
     }
 }
