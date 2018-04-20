@@ -15,6 +15,11 @@ public class PageController {
         return "index";
     }
 
+    /**
+     * 页面跳转
+     * @param page
+     * @return
+     */
     @RequestMapping(value = "{page}")
     public String showPage(@PathVariable String page){
         return page;

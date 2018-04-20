@@ -1,5 +1,6 @@
 package com.taotao.controller;
 
+import com.taotao.common.pojo.EasyUIDataGridResult;
 import com.taotao.pojo.TbItem;
 import com.taotao.service.ItemService;
 import org.slf4j.Logger;
@@ -28,5 +29,13 @@ public class ItemController {
         TbItem tbItem = this.itemService.getItemById(itemId);
         logger.info("查询结果为[{}]",tbItem.toString());
         return tbItem;
+    }
+
+    //查询商品
+    @RequestMapping(value = "/item/list")
+    @ResponseBody
+    public EasyUIDataGridResult getItemList(Integer page,Integer rows){
+        EasyUIDataGridResult result = this.itemService.getItemList(page,rows);
+        return  result;
     }
 }
