@@ -18,7 +18,7 @@
     <!--这个zookeeper注册中心的地址 IP就是我这边配置的虚拟机的IP，如果安装在windows,配置使用本机IP地址 -->
     <dubbo:registry protocol="zookeeper" address="10.176.65.135:2181" />
     <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="20880" />
+    <dubbo:protocol name="dubbo" port="20881" />
 
     <!-- 声明需要暴露的服务接口  这个ref没有配置为什么可以用呢，
     因为base-package会扫描service下面的包，然后默认累的首字母小写字母引用-->
