@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Created by len on 2018/4/20.
+ * 查询商品分类
  */
 @Controller
 public class ItemCatController {
@@ -20,7 +21,7 @@ public class ItemCatController {
     private ItemCatService itemCatService;
 
     /**
-     * 父节点查询子节点
+     * 商品类目 查询 父节点查询子节点
      * @param id
      * @return
      */

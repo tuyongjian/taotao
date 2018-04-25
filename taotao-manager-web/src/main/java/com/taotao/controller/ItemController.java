@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by len on 2018/4/18.
+ * 查询商品,保存商品
  */
 @Controller
 public class ItemController {
@@ -33,7 +34,9 @@ public class ItemController {
         return tbItem;
     }
 
-    //查询商品
+    /**
+     * 查询商品
+     */
     @RequestMapping(value = "/item/list")
     @ResponseBody
     public EasyUIDataGridResult getItemList(Integer page,Integer rows){
@@ -41,7 +44,12 @@ public class ItemController {
         return  result;
     }
 
-
+    /**
+     * 保存商品
+     * @param item
+     * @param desc
+     * @return
+     */
     @RequestMapping(value = "/item/save")
     @ResponseBody
     public TaotaoResult saveItem(TbItem item,String desc){

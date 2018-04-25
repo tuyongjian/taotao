@@ -16,6 +16,12 @@
   <resultMap id="ResultMapWithBLOBs" type="com.taotao.pojo.TbContent" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
+
+  <select id="selectByCategoryId" resultMap="BaseResultMap" parameterType="long">
+    SELECT * from tb_content
+    where  category_id = #{categoryId,jdbcType=BIGINT}
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
