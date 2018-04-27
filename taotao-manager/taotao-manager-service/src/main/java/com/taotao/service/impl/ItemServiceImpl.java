@@ -12,8 +12,12 @@ import com.taotao.pojo.TbItemDesc;
 import com.taotao.pojo.TbItemExample;
 import com.taotao.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.jms.*;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +33,13 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemDescMapper tbItemDescMapper;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    //测试消息发送
+    @Resource(name="itemTopic")
+    private Topic itemTopic;
 
     @Override
     public TbItem getItemById(long itemId) {
@@ -58,7 +69,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public TaotaoResult addItem(TbItem tbItem, String desc) {
 
-        long itemId = IDUtils.getItemId();
+        final long itemId = IDUtils.getItemId();
         tbItem.setId(itemId);
 
         tbItem.setStatus((byte)1);
@@ -75,6 +86,19 @@ public class ItemServiceImpl implements ItemService {
         itemDesc.setUpdated(date);
         // 插入商品描述
         tbItemDescMapper.insert(itemDesc);
+
+        // 商品添加完成后发送一个MQ消息
+        jmsTemplate.send(itemTopic, new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                // 创建一个消息对象
+                // 要在匿名内部类访问局部变量itemId，itemId需要用final修饰
+                TextMessage message = session.createTextMessage(itemId + "");
+                System.out.println("发送成功");
+                return message;
+            }
+        });
+
         return TaotaoResult.ok();
     }
 }

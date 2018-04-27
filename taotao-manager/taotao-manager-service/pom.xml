@@ -72,7 +72,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
+        <!-- Redis客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
         <!-- zookeeper的客户端，你要连接zookeeper，需要把以下两个jar包加进来 -->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
@@ -81,6 +85,10 @@
         <dependency>
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
         </dependency>
     </dependencies>
 
