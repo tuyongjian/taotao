@@ -16,8 +16,9 @@
     <mvc:annotation-driven />
 
     <!-- 静态资源访问-->
- <!--   <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
-    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>-->
+    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+    <mvc:resources location="/WEB-INF/images/" mapping="/images/**"/>
 
     <!-- 采用SpringMVC自带的JSON转换工具，支持@ResponseBody注解 -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -53,5 +54,6 @@
     <dubbo:application name="taotao-manager-web"/>
     <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
     <dubbo:reference interface="com.taotao.sso.service.UserRegisterService" id="userRegisterService" />
+    <dubbo:reference interface="com.taotao.sso.service.UserLoginService" id="userLoginService" />
 
 </beans>

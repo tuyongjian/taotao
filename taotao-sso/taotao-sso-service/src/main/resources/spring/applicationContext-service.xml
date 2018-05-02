@@ -23,5 +23,6 @@
     <!-- 声明需要暴露的服务接口  这个ref没有配置为什么可以用呢，
     因为base-package会扫描service下面的包，然后默认累的首字母小写字母引用-->
     <dubbo:service interface="com.taotao.sso.service.UserRegisterService" ref="userRegisterServiceImpl" />
+    <dubbo:service interface="com.taotao.sso.service.UserLoginService" ref="userLoginServiceImpl" />
 
 </beans>
